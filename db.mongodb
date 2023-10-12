@@ -1,32 +1,42 @@
 
-// Praktikum Bagian 2: Find
+// Praktikum Bagian 3: Update
 use("blog_angga");
-db.post.find();
+db.post.find( { title: "Post Title 1" } );
 
 use("blog_angga");
-db.post.findOne();
+db.post.updateOne( { title: "Post Title 1" }, { $set: { likes: 2 } } );
 
 use("blog_angga");
-db.post.find( { category: "Technology" } );
-
-use("blog_angga");
-db.post.findOne( {}, { title: 1, likes: 1 } );
-
-use("blog_angga");
-db.post.findOne( {}, { _id: 0 } );
-
-// Jawaban Praktikum Bagian 2 : Soal 3
-use("blog_angga");
-db.post.find( { category: "Event" } );
-
-// Jawaban Praktikum Bagian 2 : Soal 4
-use("blog_angga");
-db.post.findOne( { category: "News" } );
-
-// J"awaban Praktikum Bagian 2 : Soal 5
-use("blog_angga");
-db.post.findOne( { category: "Event" }, { 
-    body: 1, 
-    likes: 1,
-    tags: 1
+db.post.updateOne( {
+    title: "coba upsert"
+}, {
+    $set: { 
+        title: "coba upsert",
+        body: "Body of post",
+        category: "Others", 
+        likes: 5, 
+        tags: ["Others"],
+        date: Date()
+    }
+}, {
+    upsert: true
 } );
+
+use("blog_angga");
+db.post.findOne( { title: "coba upsert" } );
+
+use("blog_angga");
+db.post.find( {}, { title: 1, likes: 1 } );
+
+use("blog_angga");
+db.post.updateMany( {}, { $inc: { likes: 1 } } );
+
+// Jawaban Praktikum Bagian 3: Soal 6
+/* 
+    matchedCount: Counter untuk menghitung jumlah data yang telah ditemukan 
+    upsertedCount: Jika tidak ada data sebelumnya maka akan diinsertkan data tersebut
+*/
+
+// Jawaban Praktikum Bagian 3: Soal 7
+use("blog_angga");
+db.post.updateOne( { category: "Event" }, { $inc: { likes: 1 } } );
