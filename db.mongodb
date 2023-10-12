@@ -1,0 +1,32 @@
+
+// Praktikum Bagian 2: Find
+use("blog_angga");
+db.post.find();
+
+use("blog_angga");
+db.post.findOne();
+
+use("blog_angga");
+db.post.find( { category: "Technology" } );
+
+use("blog_angga");
+db.post.findOne( {}, { title: 1, likes: 1 } );
+
+use("blog_angga");
+db.post.findOne( {}, { _id: 0 } );
+
+// Jawaban Praktikum Bagian 2 : Soal 3
+use("blog_angga");
+db.post.find( { category: "Event" } );
+
+// Jawaban Praktikum Bagian 2 : Soal 4
+use("blog_angga");
+db.post.findOne( { category: "News" } );
+
+// J"awaban Praktikum Bagian 2 : Soal 5
+use("blog_angga");
+db.post.findOne( { category: "Event" }, { 
+    body: 1, 
+    likes: 1,
+    tags: 1
+} );
